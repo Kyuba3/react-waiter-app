@@ -1,6 +1,11 @@
+import RenderAllTables from "../views/RenderAllTables";
+
 const Home = () => {
     return(
-        <h1>HomePage</h1>
+        <>
+        <h1 className="fs-2 pt-3">All Tables</h1>
+        <RenderAllTables />
+        </>
     );
 };
 

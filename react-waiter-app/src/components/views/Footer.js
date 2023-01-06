@@ -1,6 +1,6 @@
 const Footer = () => {
     return(
-        <h1>Footer</h1>
+        <h1 className="d-flex mt-3 justify-content-center">Copyright C </h1>
     );
 };
 

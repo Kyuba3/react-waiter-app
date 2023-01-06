@@ -1,4 +1,5 @@
 //selectors
+export const getAllTables = ({tables}) => tables;
 
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
@@ -27,7 +28,7 @@ export const editTableRequest = (newTable) => {
         body: JSON.stringify(newTable),
     };
 
-    fetch('https://localhost:3131/tables', options)
+    fetch('https://localhost:3131/tables/' + newTable.id, options)
       .then(() => dispatch(editTable(newTable)))
   }
 }
