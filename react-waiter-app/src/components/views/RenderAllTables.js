@@ -1,11 +1,24 @@
-import { Button, Card, Container, Nav, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { getAllTables } from "../../redux/tablesRedux";
+import { Button, Card, Container, Nav, Row, Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const RenderAllTables = () => {
   
-  const tables = useSelector(getAllTables)
+  const [tables, setCustomers] = useState([]);
+
+  // first data grab
+  useEffect(() => {
+    fetch("http://localhost:3131/api/tables") 
+      .then(resp => resp.json())
+      .then(data => setCustomers(data)) // set data to state
+  }, []);
+  
+  if(tables.length === 0) {
+    return(
+        <Spinner animation="border" variant="primary"/>
+    );
+  };
   
   return (
     <Container className="col-12">
@@ -21,7 +34,6 @@ const RenderAllTables = () => {
                 </Nav>
             </Card>
         ))}
-        
       </Row>
     </Container>
   )
