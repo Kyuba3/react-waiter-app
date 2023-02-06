@@ -34,11 +34,16 @@ const SingleTable = () => {
   }, [table, tableId, navigate]);
 
   const handleStatus = (value) => {
-    if (value === 'Busy') {
+    if (value === 'Busy' || value === 'Free' || value === 'Cleaning' || value === 'Reserved') {
       setBill('0');
+      setPeopleAmount('0');
+      setMaxPeopleAmount('10');
+      handleCurrentPeople(peopleAmount);
+      handleMaxPeople(peopleAmount);
     }
     setStatus(value);
-    setMaxPeopleAmount(10);
+    setMaxPeopleAmount('10');
+    setPeopleAmount('0');
   };
 
   const handleCurrentPeople = (value) => {
@@ -77,7 +82,7 @@ const SingleTable = () => {
     navigate('/');
   };
 
-  if (tableId.length === 0) {
+  if (tableId === undefined || tableId.length === 0) {
     return <Spinner animation="border" variant="primary" />
   }
 
